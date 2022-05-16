@@ -1,8 +1,10 @@
 import React from 'react';
+import './Header.css';
 
 const Header = (props) => (
     <div className='Header'>
-        <h1>Fun with AI</h1>
+        <h1>Shopify: Front End Internship Challenge</h1>
+        <h2>Developed by Alexander Neumann</h2>
     </div>
 );
 
