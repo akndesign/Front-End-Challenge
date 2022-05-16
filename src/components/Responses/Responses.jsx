@@ -1,18 +1,19 @@
 import React from 'react';
 import './Responses.css';
 
-const Response = (props) => (
-    <div className='Response'>
-        <h1>Reponses</h1>
-        <div> 
-            <h3>Prompt:</h3>
-        {props.usersPromptData}
-        </div>
-        <div> 
-        <h3>Response:</h3>
-        {props.openAiResponseData}
-        </div>
-    </div>
-);
+
+const Response = (props) => {
+    return (
+        <div className="Response">
+            <h1>Responses</h1>
+            {props.allValuesData.map((item, index) => (
+                <div key={`${item}-${index}`}>
+                    <h3> {`Prompt: ${item[0]} Response: ${item[1]}`}</h3>
+                </div>
+            ))
+            }
+        </div >
+    )
+};
 
 export default Response;

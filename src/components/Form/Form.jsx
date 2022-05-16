@@ -39,27 +39,23 @@ const Form = (props) => {
                     /(^[.](^,)\r\n)/gm,
                     ""
                 );
-
-                console.log(aiResponseRegexRemoved);
-                props.setAiResponse(aiResponseRegexRemoved);
+                props.updateAiResponse(aiResponseRegexRemoved);
+                props.updateValuesData(data => [...data, [`${usersPromptData}`, `${aiResponseRegexRemoved}`]]);
             });
     };
 
-    console.log(props.openAiResponseData);
-
     return (
         <form >
-            <h1>Fun with AI</h1>
             <label>
                 Enter prompt
                 <br />
                 <textarea
                     type="text"
-                    value={props.usersPromptData}
-                    onChange={(event) => props.setUsersPrompt(event.target.value)}
+                    //value={props.usersPromptData}
+                    onChange={(event) => props.updateUsersPrompt(event.target.value)}
                 />
             </label>
-            <button onClick={(event) => { event.preventDefault(); handleSubmit(props.usersPromptData); console.log(props.openAiResponseData) }}>Submit</button>
+            <button onClick={(event) => { event.preventDefault(); handleSubmit(props.usersPromptData, props.updateValuesData); console.log(props.openAiResponseData) }}>Submit</button>
         </form >
     );
 };

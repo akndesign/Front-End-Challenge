@@ -1,8 +1,9 @@
 import React from 'react';
-import './Header.css';
 
 const Header = (props) => (
-    <div className='Header'></div>
+    <div className='Header'>
+        <h1>Fun with AI</h1>
+    </div>
 );
 
 export default Header;
