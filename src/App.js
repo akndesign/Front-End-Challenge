@@ -1,83 +1,103 @@
-import React, {Component, useState, useEffect} from 'react';
+import './App.css';
+import React, { useState } from 'react';
+import Form from './components/Form/Form'
 import Responses from './components/Responses/Responses'
-import PromptInput from './components/PromptInput/PromptInput'
-const { Configuration, OpenAIApi} = require("openai");
+import { usePrevious } from './hooks/input-hook'
 
-const OpenAPIKey = process.env.REACT_APP_OPENAI_API_KEY
-
-const App = (props) => {
+const App = () => {
 
   const [usersPromptData, setUsersPrompt] = useState([])
-  const [aiResponseData, setAiResponse] = useState([])
-  
-  const handleClick = (usersPrompt) => {
+  const [openAiResponseData, setAiResponse] = useState([])
 
-  console.log(usersPrompt);
+  /* const prevCount = usePrevious(usersPromptData);
 
-  const data = {
-        prompt: `${usersPrompt}`,
-        temperature: 1,
-        max_tokens: 100,
-        top_p: 1.0,
-        frequency_penalty: 0.0,
-        presence_penalty: 0.0,
-        };
+  console.log(prevCount);
 
-  fetch("https://api.openai.com/v1/engines/text-curie-001/completions", {
-      method: "POST",
-      headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${OpenAPIKey}`,
-      }, body: JSON.stringify(data)
-      
-    }).then(function(response) {
-      if (!response.ok) {
-          throw new Error("HTTP status " + response.status);
-      } return response.json();
-    }).then((response) => {
-        
-        const aiResponseTextwithRegex = response.choices[0].text;
-        const aiResponseRegexRemoved = aiResponseTextwithRegex.replace(/(^[.],\r\n|^[.]|,|\n|\r)/gm, "");
-
-        setUsersPrompt(usersPrompt)
-        setAiResponse(aiResponseRegexRemoved)
-      
-        
-        //props.aiResponseTextToList(aiResponseText)
-
-        //setAiResponse(aiResponseText)
-        //console.log(aiResponseText);
-
-    })
-
-    
-  }
-
-  console.log(aiResponseData)
+*/
 
   return (
-
-    //create a form 
-    //HandleSubmitHandler
-    //React Forms 
-    //accessing previous state in Google
-
-    <div>
-    <form onSubmit={() => handleClick(usersPromptData)}>
-    <h1>Good morning, Dave. I'm HAL 3000</h1>
-    <label>
-      Enter prompt 
-      <textarea type="text" value={usersPromptData} onChange={
-                    (event) => setUsersPrompt(event.target.value)
-                } />
-      <Responses aiResponseData={aiResponseData} promptResponseData={usersPromptData} />
-    </label>
-    <input type="submit" value="Submit" />
-    
-    </form>
-     {/*<button onClick={() => handleClick(usersPromptData)} type="submit" value="Submit" > Submit Prompt </button>*/}
+    <div className="App">
+      <div>
+        <Form
+          usersPromptData={usersPromptData}
+          setUsersPrompt={setUsersPrompt}
+          openAiResponseData={openAiResponseData}
+          setAiResponse={setAiResponse}
+        />
+        <Responses openAiResponseData={openAiResponseData} usersPromptData={usersPromptData} />
+      </div>
     </div>
-  )
+  );
 }
 
 export default App;
+
+/*
+
+export default function App() => {
+
+
+
+  const handleSubmit = (event) => {
+
+    event.preventDefault();
+
+    const data = {
+      prompt: `${usersPromptData}`,
+      temperature: 1,
+      max_tokens: 200,
+      top_p: 1.0,
+      frequency_penalty: 0.0,
+      presence_penalty: 0.0,
+    };
+
+    console.log(data)
+
+    fetch("https://api.openai.com/v1/engines/text-curie-001/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${OpenAPIKey}`,
+      }, body: JSON.stringify(data)
+
+    }).then(function (response) {
+      console.log(response)
+      if (!response.ok) {
+        throw new Error("HTTP status " + response.status);
+      } return response.json();
+    }).then((response) => {
+
+      const aiResponseTextwithRegex = response.choices[0].text;
+      const aiResponseRegexRemoved = aiResponseTextwithRegex.replace(/(^[.],\r\n|^[.]|,|\n|\r)/gm, "");
+
+
+      setUsersPrompt(usersPromptData)
+      setAiResponse(aiResponseRegexRemoved)
+
+
+      //props.aiResponseTextToList(aiResponseText)
+
+      //setAiResponse(aiResponseText)
+      //console.log(aiResponseText);
+
+    })
+
+
+    return (
+      <>
+        <Form
+
+          usersPromptData={usersPromptData}
+          handleSubmit={handleSubmit}
+          setUsersPrompt={setUsersPrompt}
+
+
+        />
+        <Responses openAiResponseData={openAiResponseData} usersPromptData={usersPromptData} />
+      </>
+    );
+
+  }
+}
+
+export default App;*/

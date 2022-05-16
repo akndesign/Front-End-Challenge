@@ -3,8 +3,15 @@ import './Responses.css';
 
 const Response = (props) => (
     <div className='Response'>
-        {props.aiResponseData}
-        {props.promptResponseData}
+        <h1>Reponses</h1>
+        <div> 
+            <h3>Prompt:</h3>
+        {props.usersPromptData}
+        </div>
+        <div> 
+        <h3>Response:</h3>
+        {props.openAiResponseData}
+        </div>
     </div>
 );
 

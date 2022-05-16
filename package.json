@@ -39,5 +39,9 @@
       "last 1 safari version"
     ],
     "proxy": "http://localhost:3001"
+  },
+  "devDependencies": {
+    "babel-eslint": "^9.0.0",
+    "prettier-eslint": "^14.1.0"
   }
 }
