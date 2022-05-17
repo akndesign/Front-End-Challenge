@@ -6,7 +6,7 @@ const OpenAPIKey = process.env.REACT_APP_OPENAI_API_KEY;
 
 const Form = (props) => {
 
-    const handleSubmit = (usersPromptData) => {
+    const handleSubmit = (usersPromptData,) => {
 
         const datafromAPI = {
             //AN: Passes in what the user types in the text field as with a template literal
@@ -45,7 +45,12 @@ const Form = (props) => {
                     ""
                 );
                 props.updateValuesData(data => [...data, [`${usersPromptData}`, `${aiResponse}`]]);
+                console.log(props.allValuesData)
+
+                //const reversed = props.updateValuesData.reverse()
+                //console.log(reversed);
             });
+
     };
 
     return (

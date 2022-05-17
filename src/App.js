@@ -17,6 +17,7 @@ const App = () => {
           usersPromptData={usersPromptData}
           updateUsersPrompt={updateUsersPrompt}
           updateValuesData={updateValuesData}
+          allValuesData={allValuesData}
         />
         <Responses allValuesData={allValuesData} />
       </div>
