@@ -8,19 +8,26 @@ const App = () => {
 
   const [usersPromptData, updateUsersPrompt] = useState([])
   const [allValuesData, updateValuesData] = useState([])
+  const [isLoading, setIsLoading] = useState(false);
 
   return (
     <div className="App">
-      <div>
+      <main>
         <Header />
-        <Form
-          usersPromptData={usersPromptData}
-          updateUsersPrompt={updateUsersPrompt}
-          updateValuesData={updateValuesData}
+        <Responses
           allValuesData={allValuesData}
+          setIsLoading={setIsLoading}
+          isLoading={isLoading}
         />
-        <Responses allValuesData={allValuesData} />
-      </div>
+      </main>
+      <Form
+        usersPromptData={usersPromptData}
+        updateUsersPrompt={updateUsersPrompt}
+        updateValuesData={updateValuesData}
+        allValuesData={allValuesData}
+        isLoading={isLoading}
+        setIsLoading={setIsLoading}
+      />
     </div>
   );
 }

@@ -1,28 +1,46 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import './Responses.css';
+import LoadingSpinner from '../Spinner/Spinner'
 
 const Response = (props) => {
 
-    console.log([...props.allValuesData].reverse())
+    console.log(props.isLoading);
+    //console.log([...props.allValuesData].reverse())
+    const messagesEndRef = useRef(null)
 
-    return (
-        <div className="Response">
-            <h1>Responses</h1>
-            {/* AN: We shouldn't mutate React state directly, so using the spread operator clones the prop */}
-            {[...props.allValuesData].reverse().map((PromptandResponses, index) => (
-                <div className="ResponseCard">
-                    <div key={`${PromptandResponses}-${index}`}>
-                        <h3>Prompt</h3>
-                        {/* AN: I tried passing the Prompts and Responses as objects, but caused a headache, so arrays was the solution*/}
-                        <h2>{PromptandResponses[0]}</h2>
-                        <h3>Response</h3>
-                        <h2>{PromptandResponses[1]}</h2>
+    /*const scrollToBottom = () => {
+        messagesEndRef.current.scrollIntoView({ behavior: "smooth" })
+    }
+
+    useEffect(() => {
+        scrollToBottom()
+    }, [...props.allValuesData]);*/
+
+    const renderChat = (
+        [...props.allValuesData].map((PromptandResponses, index) => (
+            <>
+                <div key={`${PromptandResponses}-${index}`} className="HumanChatBubble fadeInBottom" >
+                    {/* AN: I tried passing the Prompts and Responses as objects, but caused a headache, so arrays was the solution*/}
+                    {/*<h3>{PromptandResponses[0]} </h3>*/}
+                    <h3>{PromptandResponses[0]}</h3>
+                </div>
+                <div key={`${PromptandResponses}-${index - 'response'}`} >
+                    <div className="AIChatBubble fadeInBottom">
+                        <h3>{PromptandResponses[1]}</h3>
                     </div>
                 </div>
-            ))
-            }
-        </div >
+                <div ref={messagesEndRef} />
+            </>
+        )));
+
+    return (
+        <>
+            <div className="Response">
+                {props.isLoading ? <LoadingSpinner /> : renderChat}
+
+            </div >
+        </>
     )
-};
+}
 
 export default Response;

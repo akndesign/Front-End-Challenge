@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useRef } from 'react';
+import { ReactComponent as FormSvg } from '../../send-02.svg';
 import "./Form.css";
 
 //Note that the API Key is hidden away for security
@@ -6,7 +7,9 @@ const OpenAPIKey = process.env.REACT_APP_OPENAI_API_KEY;
 
 const Form = (props) => {
 
-    const handleSubmit = (usersPromptData,) => {
+    const handleSubmit = (usersPromptData) => {
+
+        props.setIsLoading(true);
 
         const datafromAPI = {
             //AN: Passes in what the user types in the text field as with a template literal
@@ -33,17 +36,22 @@ const Form = (props) => {
 
                 if (!response.ok) {
                     throw new Error("HTTP status " + response.status);
+
                 }
                 return response.json();
             })
             .then((response) => {
 
+                props.setIsLoading(false)
+
                 //AN: This cleans up the start of the OpenAPI Response using Regular Expressions (Regex)
 
                 const aiResponse = response.choices[0].text.replace(
-                    /(^[.](^,)(^())\r\n)/gm,
+                    /((^.)(^,)(^())\r\n)/gm,
                     ""
                 );
+
+
                 props.updateValuesData(data => [...data, [`${usersPromptData}`, `${aiResponse}`]]);
                 console.log(props.allValuesData)
 
@@ -54,16 +62,18 @@ const Form = (props) => {
     };
 
     return (
-        <form >
-            <label>
-                <h3>Enter prompt</h3>
+        <><form onSubmit={(event) => { event.preventDefault(); event.target.reset(); handleSubmit(props.usersPromptData, props.updateValuesData, props.setIsLoading) }}>
+            <textarea onChange={(event) => { event.preventDefault(); props.updateUsersPrompt(event.target.value) }} placeholder="Type Something..." />
+            <button className="Submit" type="submit" disabled={props.isLoading}><FormSvg /></button>
+        </form>
+            {/*<form onSubmit={ }>
                 <textarea
                     type="text"
-                    onChange={(event) => props.updateUsersPrompt(event.target.value)}
-                />
-            </label>
-            <button onClick={(event) => { event.preventDefault(); handleSubmit(props.usersPromptData, props.updateValuesData); }}>Submit</button>
-        </form >
+                    value={props.usersPromptData}
+                    placeholder="Type Something"
+                    onSubmit={(event) => props.updateUsersPrompt(event.target.value)} />
+    <button onClick={(event) => { event.preventDefault(); ; }} ></img></button>
+        </form>*/}</>
     );
 };
 
