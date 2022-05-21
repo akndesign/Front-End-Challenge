@@ -1,5 +1,4 @@
 form {
-    height: 10vh;
     position: fixed;
     bottom: 0;
     background-color: white;
@@ -31,12 +30,30 @@ textarea {
     display: block;
     font-size: 18px;
     outline: 0;
+    overflow: auto;
     border: white 2px solid;
+    min-height: 50px !important;
+}
 
+::-webkit-input-placeholder {
+    max-height: 100%;
+    line-height: 50px;
+}
+
+:-moz-placeholder {
+    line-height: 50px;
+}
+
+::-moz-placeholder {
+    line-height: 50px;
+}
+
+:-ms-input-placeholder {
+    line-height: 50px;
 }
 
 textarea::placeholder {
-    transform: translateY(11.5px);
+    line-height: 50px;
 }
 
 textarea:focus::placeholder {

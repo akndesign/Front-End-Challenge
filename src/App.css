@@ -22,7 +22,7 @@ h3 {
 main {
   padding: 10px;
   height: 90vh;
-  width: 80vh;
+  width: 75vh;
   overflow-y: scroll;
   display: flex;
   flex-direction: column;
@@ -101,6 +101,10 @@ html {
   background: #e9f2d9;
   margin-left: auto;
   margin-right: 0;
+}
+
+#dummy {
+  height: 1px
 }
 
 

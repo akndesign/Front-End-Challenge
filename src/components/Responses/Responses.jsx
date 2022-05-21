@@ -4,17 +4,14 @@ import LoadingSpinner from '../Spinner/Spinner'
 
 const Response = (props) => {
 
-    console.log(props.isLoading);
-    //console.log([...props.allValuesData].reverse())
-    const messagesEndRef = useRef(null)
+    const messagesEndRef = useRef(null);
 
-    /*const scrollToBottom = () => {
-        messagesEndRef.current.scrollIntoView({ behavior: "smooth" })
-    }
+    const scrollToBottom = () => {
+        messagesEndRef.current &&
+            messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    };
 
-    useEffect(() => {
-        scrollToBottom()
-    }, [...props.allValuesData]);*/
+    useEffect(scrollToBottom, [props.allValuesData]);
 
     const renderChat = (
         [...props.allValuesData].map((PromptandResponses, index) => (
@@ -29,7 +26,6 @@ const Response = (props) => {
                         <h3>{PromptandResponses[1]}</h3>
                     </div>
                 </div>
-                <div ref={messagesEndRef} />
             </>
         )));
 
@@ -37,7 +33,7 @@ const Response = (props) => {
         <>
             <div className="Response">
                 {props.isLoading ? <LoadingSpinner /> : renderChat}
-
+                <span ref={messagesEndRef}></span>
             </div >
         </>
     )

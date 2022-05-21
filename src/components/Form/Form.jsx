@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { ReactComponent as FormSvg } from '../../send-02.svg';
+import TextareaAutosize from 'react-textarea-autosize';
 import "./Form.css";
 
 //Note that the API Key is hidden away for security
@@ -10,6 +11,8 @@ const Form = (props) => {
     const handleSubmit = (usersPromptData) => {
 
         props.setIsLoading(true);
+
+        console.log(usersPromptData.includes('Alexander Neumann'));
 
         const datafromAPI = {
             //AN: Passes in what the user types in the text field as with a template literal
@@ -63,17 +66,10 @@ const Form = (props) => {
 
     return (
         <><form onSubmit={(event) => { event.preventDefault(); event.target.reset(); handleSubmit(props.usersPromptData, props.updateValuesData, props.setIsLoading) }}>
-            <textarea onChange={(event) => { event.preventDefault(); props.updateUsersPrompt(event.target.value) }} placeholder="Type Something..." />
+            <TextareaAutosize placeholder="Type a message..." onChange={(event) => { event.preventDefault(); props.updateUsersPrompt(event.target.value) }} />
             <button className="Submit" type="submit" disabled={props.isLoading}><FormSvg /></button>
         </form>
-            {/*<form onSubmit={ }>
-                <textarea
-                    type="text"
-                    value={props.usersPromptData}
-                    placeholder="Type Something"
-                    onSubmit={(event) => props.updateUsersPrompt(event.target.value)} />
-    <button onClick={(event) => { event.preventDefault(); ; }} ></img></button>
-        </form>*/}</>
+        </>
     );
 };
 
