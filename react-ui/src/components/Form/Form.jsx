@@ -5,7 +5,6 @@ import TextareaAutosize from 'react-textarea-autosize';
 import "./Form.css";
 
 //Note that the API Key is hidden away for security
-const OpenAPIKey = process.env.REACT_APP_OPENAI_API_KEY;
 
 const Form = (props) => {
 
