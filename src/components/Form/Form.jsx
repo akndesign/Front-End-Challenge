@@ -6,6 +6,7 @@ import "./Form.css";
 
 //Note that the API Key is hidden away for security
 const OpenAPIKey = process.env.REACT_APP_OPENAI_API_KEY;
+console.log(OpenAPIKey)
 
 const Form = (props) => {
 
@@ -38,7 +39,7 @@ const Form = (props) => {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    Authorization: `Bearer ${OpenAPIKey}`,
+                    Authorization: `Bearer ${process.env.REACT_APP_OPENAI_API_KEY}`,
                 },
                 body: JSON.stringify(datafromAPI),
             })
