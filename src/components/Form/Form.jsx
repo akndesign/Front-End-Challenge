@@ -1,5 +1,6 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { ReactComponent as FormSvg } from '../../send-02.svg';
+import AlexanderNeumann from './AlexanderNeumann';
 import TextareaAutosize from 'react-textarea-autosize';
 import "./Form.css";
 
@@ -12,56 +13,64 @@ const Form = (props) => {
 
         props.setIsLoading(true);
 
-        console.log(usersPromptData.includes('Alexander Neumann'));
+        if ((props.usersPromptData).toLowerCase().includes("alexander neumann")) {
+            let aiResponse = [
+                <><AlexanderNeumann /></>
+            ]
 
-        const datafromAPI = {
-            //AN: Passes in what the user types in the text field as with a template literal
-            prompt: `${usersPromptData}`,
-            temperature: 1,
-            max_tokens: 200,
-            top_p: 1.0,
-            frequency_penalty: 0.0,
-            presence_penalty: 0.0,
-        };
+            props.updateValuesData(data => [...data, [`${usersPromptData}`, aiResponse]]);
+            props.setIsLoading(false)
 
-        fetch("https://api.openai.com/v1/engines/text-curie-001/completions", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${OpenAPIKey}`,
-            },
-            body: JSON.stringify(datafromAPI),
-        })
-            .then((response) => {
+        } else {
 
-                //AN: If there's any errors coming from the OpenAPI,
-                //this is where the code tells us the status code
+            const datafromAPI = {
+                //AN: Passes in what the user types in the text field as with a template literal
+                prompt: `${usersPromptData}`,
+                temperature: 1,
+                max_tokens: 200,
+                top_p: 1.0,
+                frequency_penalty: 0.0,
+                presence_penalty: 0.0,
+            };
 
-                if (!response.ok) {
-                    throw new Error("HTTP status " + response.status);
-
-                }
-                return response.json();
+            fetch("https://api.openai.com/v1/engines/text-curie-001/completions", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${OpenAPIKey}`,
+                },
+                body: JSON.stringify(datafromAPI),
             })
-            .then((response) => {
+                .then((response) => {
 
-                props.setIsLoading(false)
+                    //AN: If there's any errors coming from the OpenAPI,
+                    //this is where the code tells us the status code
 
-                //AN: This cleans up the start of the OpenAPI Response using Regular Expressions (Regex)
+                    if (!response.ok) {
+                        throw new Error("HTTP status " + response.status);
 
-                const aiResponse = response.choices[0].text.replace(
-                    /((^.)(^,)(^())\r\n)/gm,
-                    ""
-                );
+                    }
+                    return response.json();
+                })
+                .then((response) => {
 
+                    console.log(response.choices[0].text)
+                    props.setIsLoading(false)
 
-                props.updateValuesData(data => [...data, [`${usersPromptData}`, `${aiResponse}`]]);
-                console.log(props.allValuesData)
+                    //AN: This cleans up the start of the OpenAPI Response using Regular Expressions (Regex)
 
-                //const reversed = props.updateValuesData.reverse()
-                //console.log(reversed);
-            });
+                    let aiResponse = response.choices[0].text.replace(
+                        /((^.)(^,)(^())\r\n)/gm,
+                        ""
+                    );
 
+                    aiResponse = aiResponse === "" || null ? "I'm sorry Dave, I'm afraid I can't that" : aiResponse;
+
+                    props.updateValuesData(data => [...data, [`${usersPromptData}`, `${aiResponse}`]]);
+                    console.log(props.allValuesData)
+
+                });
+        }
     };
 
     return (

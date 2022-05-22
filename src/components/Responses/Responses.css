@@ -1,13 +1,7 @@
 .Response {
-    margin-bottom: 20px;
-
-    /* display: flex;
-    flex-direction: column-reverse;
-    flex-direction: row-reverse;
-} */
+    margin: 1vh;
 }
 
-
-h2 {
-    font-weight: 400;
+.empty {
+    height: 10px;
 }

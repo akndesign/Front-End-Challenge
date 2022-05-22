@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import Header from './components/Header/Header'
 import Form from './components/Form/Form'
 import Responses from './components/Responses/Responses'

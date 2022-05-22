@@ -10,7 +10,7 @@ const Header = (props) => (
         </div>
         <div className='AIChatBubble fadeInBottom delay-2'>
             <h3>If you’re stuck, try asking me something like, ‘write a poem about dinosaurs in the snow’. Or,
-                ‘Tell me more about Alexander Neumann’. </h3>
+                ‘tell me more about Alexander Neumann’. </h3>
         </div>
 
         <div className=' AIChatBubble  fadeInBottom delay-4 '>

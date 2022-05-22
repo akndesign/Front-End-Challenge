@@ -7,8 +7,7 @@ const Response = (props) => {
     const messagesEndRef = useRef(null);
 
     const scrollToBottom = () => {
-        messagesEndRef.current &&
-            messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+        messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
     };
 
     useEffect(scrollToBottom, [props.allValuesData]);
@@ -33,7 +32,7 @@ const Response = (props) => {
         <>
             <div className="Response">
                 {props.isLoading ? <LoadingSpinner /> : renderChat}
-                <span ref={messagesEndRef}></span>
+                <div className='empty' ref={messagesEndRef}></div>
             </div >
         </>
     )

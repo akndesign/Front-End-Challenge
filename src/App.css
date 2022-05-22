@@ -23,7 +23,7 @@ main {
   padding: 10px;
   height: 90vh;
   width: 75vh;
-  overflow-y: scroll;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
 }
@@ -84,6 +84,13 @@ html {
   animation-fill-mode: both;
   margin: 20px;
   align-items: center;
+  -ms-word-break: break-all;
+  /* This is the dangerous one in WebKit, as it breaks things wherever */
+  word-break: break-all;
+  /* Instead use this non-standard one: */
+  word-break: break-word;
+
+  /* Adds a hyphen where the word breaks, if supported (No Blink) */
 }
 
 .AIChatBubble {
@@ -103,11 +110,6 @@ html {
   margin-right: 0;
 }
 
-#dummy {
-  height: 1px
-}
-
-
 .delay-2 {
   animation-delay: 2s;
 }
@@ -120,10 +122,28 @@ html {
   animation-name: fadeInBottom
 }
 
+main::-webkit-scrollbar {
+  width: 0.25rem;
+  height: 0.25rem;
+}
+
+main::-webkit-scrollbar-track {
+  margin-top: 2vh;
+  margin-bottom: 7vh;
+}
+
+main::-webkit-scrollbar-thumb {
+  background: black;
+}
+
+main:active::-webkit-scrollbar-thumb {
+  visibility: visible;
+}
+
 @keyframes fadeInBottom {
   from {
     opacity: 0;
-    transform: translateY(100%);
+    transform: translateY(20%);
   }
 
   to {
