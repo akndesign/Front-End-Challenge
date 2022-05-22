@@ -22,6 +22,7 @@ const Form = (props) => {
             props.setIsLoading(false)
 
         } else {
+            console.log(props.usersPromptData, usersPromptData)
 
             const datafromAPI = {
                 //AN: Passes in what the user types in the text field as with a template literal
@@ -43,6 +44,7 @@ const Form = (props) => {
             })
                 .then((response) => {
 
+                    console.log(response)
                     //AN: If there's any errors coming from the OpenAPI,
                     //this is where the code tells us the status code
 
