@@ -65,7 +65,7 @@ Prior to hitting the OpenAI, **two manual responses were baked into the app**. T
     props.updateValuesData(data => [...data, [`${usersPromptData}`, aiResponse]]);
     props.setIsLoading(false)
 
-This sets the User's `prompt` to lowercase, and checks to see if the `prompt` includes the keywords _Alexander Neumann_. If true, this renders a `Form` subcomponent called `<AlexanderNeumann />`. The keywords are then added to the `updateValuesData` state value, as well as the User's `prompt`. The loader is set to `false`. A duplicate logic is applied for the keywords _challenge built_, rendering a `Form` subcomponent called `<TechStack/>`. (A ternary operator was attempted, but did not work as intended). If these keywords do not exist, the app continues through to load the OpenAI API. <br>
+This sets the User's `prompt` to lowercase, and checks to see if the `prompt` includes the keywords _Alexander Neumann_. If true, this renders a `Form` subcomponent called `<AlexanderNeumann />`. The keywords are then added to the `updateValuesData` state value, as well as the User's `prompt`. The loader is set to `false`. Duplicate logic is applied for the keywords _challenge built_, rendering a `Form` subcomponent called `<TechStack/>`. (A ternary operator was attempted, but did not work as intended). If these keywords do not exist, the app continues through to load the OpenAI API. <br>
 
 I interact with the OpenAI by passing in the User's `Prompt` as a **template literal**. I also ensure that the OpenAI key is **secretely kept away** — not exposed in any part of the front-end — from nefarious eyes 👀
 
@@ -94,7 +94,7 @@ Finally, I passed the data into a 2D array, to come up with the User's `Prompt` 
 
 ### Responses Component
 
-Mostly, the `Responses` component displays the User's `Prompt` and OpenAI `Response` using a `map` function, passed from the `Form` component. In addition, there are a few other purposes of this component. A recurring issue I found was after the message has been rendered, a user would expect that the most recent message would be immediately displayed in the view, like any chat application. _Not so!_ Functionality had to built — using an persistent empty `span` at the bottom of the chat window — to ensure that the most recent User's `Prompt` and OpenAI `Response` was visible. This is where things get a little complex, and a React `UseRef` was used </br></br>
+Mostly, the `Responses` component displays the User's `Prompt` and OpenAI `Response` using a `map` function, passed from the `Form` component. In addition, there are a few other purposes of this component. A recurring issue I found was after the message has been rendered, a user would expect that the most recent message would be immediately displayed (and scrolled down) in the view, like any chat application. _Not so!_ Functionality had to built — using an persistent empty `span` at the bottom of the chat window — to ensure that the most recent User's `Prompt` and OpenAI `Response` was visible. This is where things got a little complex (many hours trawling Stack Overflow!), and a React `UseRef` was used. </br></br>
 
 ![Scrolled View Implemented](https://i.imgur.com/C3KxjhA.png)
 <em><p align="center">_Automatic scrolling to the most recent message, before and after implementation_</p></em>
@@ -112,7 +112,7 @@ There's some future features I'd like to implement:
 
 ### General bug fixes, wider browser and mobile support
 
-As we developed this on a single MacBook Pro on a relatively quick deadline, I am aware that the functionality may not be supported on older browsers and mobile devices (except for IE6, that browser can gracefully go to pasture!). Please keep this in mind that the best way to view this exercise is on a Chrome browser, using an Apple device like a MacBook. 
+As we developed this on a single MacBook Pro on a relatively quick deadline, I am aware that the functionality may not be supported on older browsers and mobile devices (except for IE6, that browser can gracefully go to pasture!). Please keep in mind that the best way to view this exercise is on a Chrome browser, using an Apple device like a MacBook. 
 
 ### Press enter
 
@@ -132,5 +132,5 @@ Subtly change the color of the background, based on the message history length b
 
 ## Contact Details
 
-Alexander Neumann (he/him), currently in PST<br>
+Alexander Neumann (he/him)<br>
 alexander@akndesign.com
