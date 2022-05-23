@@ -24,7 +24,7 @@ A live version of the challenge can be demoed here: <a href="https://shopify-akn
 
 ![Shopify Challenge Design](https://i.imgur.com/X3RiKYT.png)
 
-_The initial, simple design created in Sketch, lookin' pretty similar to the final outcome. Note the chatbot image (Rosamund Pike as Marie Curie in 'Radioactive') and the selection of text engine have yet to be implemented_.
+_The initial, simple design created in Sketch, looking pretty similar to the final outcome. Note the chatbot image (Rosamund Pike as Marie Curie in 'Radioactive') and the selection of text engine have yet to be implemented_.
 
 ## Overview
 
@@ -94,7 +94,7 @@ Finally, I passed the data into a 2D array, to come up with the User's `Prompt` 
 
 ### Responses Component
 
-Mostly, the `Responses` component displays the User's `Prompt` and OpenAI `Response` using a `map` function, passed from the `Form` component. In addition, there are a few other purposes of this component. A recurring issue I found was after the message has been rendered, a user would expect that the most recent message would be immediately displayed in the view, like any chat application. _Not so!_ Functionality had to built — using an persistent empty `span` at the bottom of the chat window — to ensure that the most recent User's `Prompt` and OpenAI `Response` was visible.</br></br>
+Mostly, the `Responses` component displays the User's `Prompt` and OpenAI `Response` using a `map` function, passed from the `Form` component. In addition, there are a few other purposes of this component. A recurring issue I found was after the message has been rendered, a user would expect that the most recent message would be immediately displayed in the view, like any chat application. _Not so!_ Functionality had to built — using an persistent empty `span` at the bottom of the chat window — to ensure that the most recent User's `Prompt` and OpenAI `Response` was visible. This is where things get a little complex, and a React `UseRef` was used </br></br>
 
 ![Scrolled View Implemented](https://i.imgur.com/C3KxjhA.png)
 <em><p align="center">_Automatic scrolling to the most recent message, before and after implementation_</p></em>
