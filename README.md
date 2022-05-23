@@ -49,7 +49,7 @@ Future versions would likely reduce the trim of props passed down.
 
 ### Header Component
 
-The `Header` component is a set of hardcoded chat responses which guide the user (pretending to be the Curie AI) and mimic the chat conversation between what the user types and the OpenAI responses (allowing the user to anticipate the functionality, effectively providing a set of instructions, even prior to any interaction). Prompts are provided, directing the user to type out prompts that would fire the the hardcoded, manual responses. 
+The `Header` component is a set of hardcoded chat responses which guide the user (pretending to be the Curie AI) and mimic the chat conversation between what the user types and the OpenAI responses (allowing the user to anticipate the functionality, effectively providing a set of instructions, even prior to any interaction). The prompts with keywords are provided, directing the user to type out prompts that would fire the corresponding hardcoded, manual responses. 
 
 ### Form Component
 
