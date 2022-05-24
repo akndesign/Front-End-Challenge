@@ -32,7 +32,7 @@ This challenge was built in Node.JS and React, using **functional components** a
 
 ### App Component
 
-The `App` component provides the overall structure of this app. The **React useState** hook was ulitised to cleanly and succinctly hold the relevant values required to pass the user's `Prompt`, the `response`, and the `loader`, and load this into React's virtual state:
+The `App` component provides the overall structure of this app. The **React useState** hook was ulitised to cleanly and succinctly hold the relevant values required to pass the user's `Prompt`, the `Response`, and the `loader`, and load this into React's virtual state:
 
 | UseState value                                              	| Description                                                       	|
 |-------------------------------------------------------------	|-------------------------------------------------------------------	|
@@ -94,12 +94,12 @@ Finally, I passed the data into a 2D array, to produce the user's `Prompt` and c
 
 ### Responses Component
 
-Mostly, the `Responses` component displays the user's `Prompt` and OpenAI `Response` using a `map` function, passed from the `Form` component. In addition, there are a few other purposes of this component. A recurring issue I found was after the message has been rendered, a user would expect that the most recent message would be immediately displayed (and scrolled down) in the view, like any chat application. _Not so!_ Functionality had to built — using an persistent empty `span` at the bottom of the chat window — to ensure that the most recent User's `Prompt` and OpenAI `Response` was visible. This is where things got a little complex (many hours trawling Stack Overflow!), and a React `UseRef` was used. </br></br>
+Mostly, the `Responses` component displays the user's `Prompt` and OpenAI `Response` using a `map` function, passed from the `Form` component. In addition, there are a few other purposes of this component. A recurring issue I found was after the message has been rendered, a user would expect that the most recent message would be immediately displayed (and scrolled down) into the view, like any chat application. _Not so!_ Functionality had to built — using an persistent empty `span` at the bottom of the chat window — to ensure that the most recent user's `Prompt` and OpenAI `Response` was visible. This is where things got a little complex (many hours of trawling Stack Overflow!), and a React `UseRef` was used. </br></br>
 
 ![Scrolled View Implemented](https://i.imgur.com/C3KxjhA.png)
 <em><p align="center">_Automatic scrolling to the most recent message, before and after implementation_</p></em>
 
-Additionally, the ternary operator was provided to check when to add the `loader` ('Please Wait'):
+Additionally, the ternary operator was provided to check when to add the `loader` ('Please Wait') or when to display the results:
 
     {props.isLoading ? <LoadingSpinner /> : renderChat}
 
@@ -124,7 +124,7 @@ As designed in the Sketch document
 
 ### Maintain message history
 
-At this time, the dynamic message history is completely reloaded everytime you interact with the API. For the purposes of the challenge, this is permissable, however as a chat-like tool, this isn't all too user-friendly. This could be solved by refactoring the 2D arrays, tinkering with the `Responses` component or implementing a database like Firebase, saving each message to the database. 
+At this time, the dynamic message history is completely reloaded everytime you interact with the API. For the purposes of the challenge, this is permissable, however as a chat-like tool, this isn't all too user-friendly. This could be solved by refactoring the 2D arrays, tinkering with the `Responses` component or implementing a database like Firebase, MongoDB or SQL, saving each message to the database. 
 
 ### 🌈 Fun feature
 
