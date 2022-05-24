@@ -32,12 +32,12 @@ This challenge was built in Node.JS and React, using **functional components** a
 
 ### App Component
 
-The `App` component provides the overall structure of this app. The **React useState** hook was ulitised to cleanly and succinctly hold the relevant values required to pass the User's `prompt`, the `response`, and the `loader` state:
+The `App` component provides the overall structure of this app. The **React useState** hook was ulitised to cleanly and succinctly hold the relevant values required to pass the user's `Prompt`, the `response`, and the `loader`, and load this into React's virtual state:
 
 | UseState value                                              	| Description                                                       	|
 |-------------------------------------------------------------	|-------------------------------------------------------------------	|
 | `const [usersPromptData, updateUsersPrompt] = useState([])` 	| What the User types into the `Form` component, initially set as an empty array                       	|
-| `const [allValuesData, updateValuesData] = useState([])`    	| The combined values of the User's `Prompt` and the OpenAI's `Response`, also initially set as an empty array 	|
+| `const [allValuesData, updateValuesData] = useState([])`    	| The combined values of the user's `Prompt` and the OpenAI's `Response`, also initially set as an empty array 	|
 | `const [isLoading, setIsLoading] = useState(false);`        	| Setting the loader ('Please Wait'), by default, set to `false`          	|
 
 Each `UseState` value was then passed as a props value, down to the `Form` and `Responses` components. </br>
@@ -53,9 +53,9 @@ The `Header` component is a set of hardcoded chat responses which guide the user
 
 ### Form Component
 
-The `Form` component is largely the brains of this challenge. Whilst on a User's perspective, the only visual aspect they see is `textarea` and `submit` button, this component is where the interaction with the OpenAI rests, and then handed off to the `Responses` component. 
+The `Form` component is largely the brains of this challenge. Whilst from a user's perspective, the only visual aspect they see is `textarea` and `submit` button, this component is where the interaction with the OpenAI rests, and then handed off to the `Responses` component. 
 
-Prior to hitting the OpenAI, **two manual responses were baked into the app**. These responses override OpenAI's responses. However, the code has to anticipate some ambiguity and/or upper or lowercase letters in the User's `prompt`. Thereby, I use: <br/>
+Prior to hitting the OpenAI, **two manual responses were baked into the app**. These responses override OpenAI's responses. However, the code has to anticipate some ambiguity and/or upper or lowercase letters in the user's `prompt`. Thereby, I use: <br/>
 
     if ((props.usersPromptData).toLowerCase().includes("alexander neumann")) {
         let aiResponse = [
@@ -87,14 +87,14 @@ Here, I removed any extranenous punctuation from the beginning of  OpenAI Respon
 <em><p align="center">HAL:9000 would not be impressed!</p></em>
 
 
-Finally, I passed the data into a 2D array, to come up with the User's `Prompt` and corresponding OpenAI `Response`:
+Finally, I passed the data into a 2D array, to produce the user's `Prompt` and corresponding OpenAI `Response` as a pair:
 
         ['Hello this is the prompt', 'Pleasure to meet you, this is the response!']
 
 
 ### Responses Component
 
-Mostly, the `Responses` component displays the User's `Prompt` and OpenAI `Response` using a `map` function, passed from the `Form` component. In addition, there are a few other purposes of this component. A recurring issue I found was after the message has been rendered, a user would expect that the most recent message would be immediately displayed (and scrolled down) in the view, like any chat application. _Not so!_ Functionality had to built — using an persistent empty `span` at the bottom of the chat window — to ensure that the most recent User's `Prompt` and OpenAI `Response` was visible. This is where things got a little complex (many hours trawling Stack Overflow!), and a React `UseRef` was used. </br></br>
+Mostly, the `Responses` component displays the user's `Prompt` and OpenAI `Response` using a `map` function, passed from the `Form` component. In addition, there are a few other purposes of this component. A recurring issue I found was after the message has been rendered, a user would expect that the most recent message would be immediately displayed (and scrolled down) in the view, like any chat application. _Not so!_ Functionality had to built — using an persistent empty `span` at the bottom of the chat window — to ensure that the most recent User's `Prompt` and OpenAI `Response` was visible. This is where things got a little complex (many hours trawling Stack Overflow!), and a React `UseRef` was used. </br></br>
 
 ![Scrolled View Implemented](https://i.imgur.com/C3KxjhA.png)
 <em><p align="center">_Automatic scrolling to the most recent message, before and after implementation_</p></em>
