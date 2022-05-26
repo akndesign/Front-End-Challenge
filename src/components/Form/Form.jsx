@@ -31,7 +31,6 @@ const Form = (props) => {
             props.setIsLoading(false)
 
         } else {
-
             const datafromAPI = {
                 //AN: Passes in what the user types in the text field as with a template literal
                 prompt: `${usersPromptData}`,
@@ -49,36 +48,38 @@ const Form = (props) => {
                     Authorization: `Bearer ${OpenAPIKey}`,
                 },
                 body: JSON.stringify(datafromAPI),
+            }).then((response) => {
+
+                //If the response isn't okay, display a message bubble, rather than throwing an error
+                if (!response.ok) {
+
+                    return (
+                        props.updateValuesData(data => [...data, [`${usersPromptData} `, `Daisy, Daisy.... please refresh the page, I'm having some issues at this time. Status code ${response.status}`]]),
+                        props.setIsLoading(false)
+                    )
+                }
+
+                props.setIsLoading(false)
+
+                return response.json();
+
+            }).then((response) => {
+
+                //AN: This cleans up the start of the OpenAPI Response using Regular Expressions (Regex)
+                let aiResponse = response.choices[0].text.replace(
+                    /((^.)(^,)(^())\r\n)/gm,
+                    ""
+                );
+
+                aiResponse = aiResponse === "" || null ? "I'm sorry Dave, I'm afraid I can't do that" : aiResponse;
+
+                props.updateValuesData(data => [...data, [`${usersPromptData} `, `${aiResponse} `]]);
+
+
             })
-                .then((response) => {
 
-                    if (!response.ok) {
-                        throw new Error("HTTP status " + response.status);
-
-                    }
-                    return response.json();
-                })
-                .then((response) => {
-
-                    console.log(response.choices[0].text)
-                    props.setIsLoading(false)
-
-                    //AN: This cleans up the start of the OpenAPI Response using Regular Expressions (Regex)
-
-                    let aiResponse = response.choices[0].text.replace(
-                        /((^.)(^,)(^())\r\n)/gm,
-                        ""
-                    );
-
-                    aiResponse = aiResponse === "" || null ? "I'm sorry Dave, I'm afraid I can't do that" : aiResponse;
-
-                    props.updateValuesData(data => [...data, [`${usersPromptData}`, `${aiResponse}`]]);
-                    console.log(props.updateValuesData);
-
-                });
-        }
+        };
     };
-
     return (
         <><form onSubmit={(event) => { event.preventDefault(); event.target.reset(); handleSubmit(props.usersPromptData, props.updateValuesData, props.setIsLoading) }}>
             <TextareaAutosize placeholder="Type a message..." onChange={(event) => { event.preventDefault(); props.updateUsersPrompt(event.target.value) }} />
