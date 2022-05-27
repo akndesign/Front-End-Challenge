@@ -10,6 +10,20 @@ const OpenAPIKey = process.env.REACT_APP_OPENAI_API_KEY;
 
 const Form = (props) => {
 
+    const handleEnterPress = (event) => {
+
+        //keyCode 13 equals Enter key
+        if (event.keyCode === 13) {
+
+            let textarea = document.getElementById('textarea')
+
+            handleSubmit(event.target.value);
+            event.preventDefault();
+            textarea.value = '';
+            textarea.blur();
+        }
+    };
+
     const handleSubmit = (usersPromptData) => {
 
         props.setIsLoading(true);
@@ -80,9 +94,12 @@ const Form = (props) => {
 
         };
     };
+
+
+
     return (
         <><form onSubmit={(event) => { event.preventDefault(); event.target.reset(); handleSubmit(props.usersPromptData, props.updateValuesData, props.setIsLoading) }}>
-            <TextareaAutosize placeholder="Type a message..." onChange={(event) => { event.preventDefault(); props.updateUsersPrompt(event.target.value) }} />
+            <TextareaAutosize id="textarea" placeholder="Type a message, then press enter... " onKeyDown={handleEnterPress} onChange={(event) => { event.preventDefault(); props.updateUsersPrompt(event.target.value) }} />
             <button className="Submit" type="submit" disabled={props.isLoading}><FormSvg /></button>
         </form>
         </>
