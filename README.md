@@ -119,9 +119,11 @@ As we developed this on a single MacBook Pro on a relatively quick deadline, I a
 ~~Currently, I've developed the challenge to throw an error (rather a UI solution) when the OpenAPI does not successfully load. Helpful as a developer, not so as a user!~~<br></br>
 _Completed May 26th, 2022_
 
-### Press enter
+### ~~Press enter~~
 
-Why press the submit button when you can hit <kbd>enter</kbd> on your keyboard!
+~~Why press the submit button when you can hit <kbd>enter</kbd> on your keyboard!~~
+
+_Completed May 27th, 2022_
 
 ### Select text engine and chat image
 
