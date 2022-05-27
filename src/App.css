@@ -20,10 +20,53 @@ h3 {
 }
 
 a {
-  display: inline-block;
   position: relative;
+  display: inline-block;
+  padding-bottom: 3px;
   text-decoration: none;
+  color: #0f7b65;
+  font-weight: 400;
+
+}
+
+a:after {
+  content: "";
+  width: 100%;
+  height: 2px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  opacity: 0;
+  transform: translate3d(0, 100%, 0);
+  transition: transform 0.2s cubic-bezier(0.84, 0.41, 0, 1.2), opacity 0.2s ease-out;
+}
+
+a:focus:after,
+a:hover:after {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.hover18:focus:after,
+.hover18:hover:after {
+  width: 100%;
+}
+
+a:focus {
+  outline: 0;
+}
+
+a:focus,
+a:hover {
   color: #ED5B47;
+}
+
+a:after {
+  background-color: #ED5B47;
+}
+
+a:visited {
+  color: #AF4237;
 }
 
 
