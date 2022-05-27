@@ -29,6 +29,16 @@ a {
 
 }
 
+a:visited {
+  color: #AF4237;
+  transition: 1s ease-in;
+
+}
+
+a:visited:hover {
+  color: #AF4237;
+}
+
 a:after {
   content: "";
   width: 100%;
@@ -45,30 +55,26 @@ a:focus:after,
 a:hover:after {
   opacity: 1;
   transform: translate3d(0, 0, 0);
-}
-
-.hover18:focus:after,
-.hover18:hover:after {
-  width: 100%;
+  color: red;
 }
 
 a:focus {
   outline: 0;
 }
 
-a:focus,
-a:hover {
-  color: #ED5B47;
+
+a:visited::after {
+  background-color: #AF4237;
 }
 
 a:after {
   background-color: #ED5B47;
 }
 
-a:visited {
-  color: #AF4237;
+a:focus,
+a:hover {
+  color: #ED5B47;
 }
-
 
 main {
   padding: 10px;
