@@ -81,7 +81,7 @@ const Form = (props) => {
 
                 //AN: This cleans up the start of the OpenAPI Response using Regular Expressions (Regex)
                 let aiResponse = response.choices[0].text.replace(
-                    /^(,\(\)\. -)/gm, ""
+                    /^(,||\(||\)||\.|| -@#)/gm, ""
                 );
 
                 aiResponse = aiResponse === "" || null ? "I'm sorry Dave, I'm afraid I can't do that" : aiResponse;

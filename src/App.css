@@ -190,7 +190,7 @@ main::-webkit-scrollbar-track {
 }
 
 main::-webkit-scrollbar-thumb {
-  background: black;
+  background: #00352c;
 }
 
 main:active::-webkit-scrollbar-thumb {
