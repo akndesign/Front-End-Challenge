@@ -59,11 +59,11 @@ const Form = (props) => {
                     )
                 }
 
-                props.setIsLoading(false)
-
                 return response.json();
 
             }).then((response) => {
+
+                props.setIsLoading(false)
 
                 //AN: This cleans up the start of the OpenAPI Response using Regular Expressions (Regex)
                 let aiResponse = response.choices[0].text.replace(

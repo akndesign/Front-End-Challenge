@@ -90,7 +90,7 @@ html {
   box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.10), 0 0 5px 0 rgba(0, 0, 0, 0.20), inset 0 0 2px 0 #FFFFFF;
   animation-duration: 1s;
   animation-fill-mode: both;
-  margin: 20px;
+  margin-bottom: 20px;
   align-items: center;
   -ms-word-break: break-all;
   /* This is the dangerous one in WebKit, as it breaks things wherever */
