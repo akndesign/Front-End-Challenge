@@ -1,8 +1,8 @@
 # Shopify Front End Challenge: OpenAI API
 
-**Howdy, Shopify Recruiter!** Thanks for stopping by. <br>
+**Howdy!** Thanks for stopping by. <br>
 
-This document should provide an overview of the Front End challenge for the Fall 2022 internship cohort. <br>
+This document should provide an overview of the Front End challenge. <br>
 
 This app was developed by **Alexander Neumann**.
 
